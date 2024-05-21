@@ -1,2 +1,3 @@
 # DREEM3
-Scrpits for processing DREEM3 data
+Here, I put the scrpits that I am working on for processing the DREEM3 data.
+
