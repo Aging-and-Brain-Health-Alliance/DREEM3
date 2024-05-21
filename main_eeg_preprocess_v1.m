@@ -430,18 +430,19 @@ load(fullfile(sub_fold,[sub_id '_N2N3_stagenames_afterfft.mat']));
 N2_EEG = N2N3_EEG;
 
 finishedfilename = 'preprocessed_eeg';
-N2cleaned_filename = strrep(finishedfilename,'.set','_N2only.set');
-N2only_cleaned = (strcmp(N2N3_stages_afterfft,'N2'));
-swa_selectStagesEEGLAB_BAR(N2_EEG, N2only_cleaned,'N2only_cleaned',N2cleaned_filename);
-N2only_cleaned = pop_saveset(N2N3_EEG, 'filename', N2cleaned_filename, 'filepath', sub_fold ,'check', 'on');
+N2cleaned_filename = [finishedfilename '_N2only.set'];
+N2only_cleaned_ind = (strcmp(N2N3_stages_afterfft_snipped,'N2'));
+
+swa_selectStagesEEGLAB_BAR(N2_EEG, N2only_cleaned_ind,'N2only_cleaned',N2cleaned_filename);
+N2only_cleaned = pop_saveset(N2_EEG, 'filename', N2cleaned_filename, 'filepath', sub_fold ,'check', 'on');
  
 
 N3_EEG = N2N3_EEG;
-N3cleaned_filename = strrep(finishedfilename,'.set','_N3only.set');
+N3cleaned_filename = [finishedfilename '_N3only.set'];
 
-N3only_cleaned = (strcmp(N2N3_stages_afterfft,'N3'));
-swa_selectStagesEEGLAB_BAR(N3_EEG, N3only_cleaned,'N3only_cleaned',N3cleaned_filename);
-N3only_cleaned = pop_saveset(N2N3_EEG, 'filename', N3cleaned_filename, 'filepath',sub_fold ,'check', 'on');
+N3only_cleaned_ind = (strcmp(N2N3_stages_afterfft_snipped,'N3'));
+swa_selectStagesEEGLAB_BAR(N3_EEG, N3only_cleaned_ind,'N3only_cleaned',N3cleaned_filename);
+N3only_cleaned = pop_saveset(N3_EEG, 'filename', N3cleaned_filename, 'filepath',sub_fold ,'check', 'on');
 
 
 
