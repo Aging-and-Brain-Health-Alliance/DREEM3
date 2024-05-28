@@ -1,3 +1,4 @@
 # DREEM3
-Here, I put the scrpits that I am working on for processing the DREEM3 data.
+This repository contains the functions necessary for processing the eeg data derived from DREEM3 headbands.
+
 
