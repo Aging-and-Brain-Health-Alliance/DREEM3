@@ -38,7 +38,7 @@ save(fullfile(EEG.save_dir,saveFile), 'EEG', '-mat');%,'-v7.3');
 display(['writing ',fullfile(EEG.save_dir,EEG.dataset)]);
 
 % write the new data file
-fileID = fopen(fullfile(EEG.save_dir,saveFile),'w');
+fileID = fopen([EEG.save_dir,saveFile],'w');
 display(['writing ',fullfile(EEG.save_dir,EEG.dataset)]);
 fwrite(fileID, EEG.data,'single');
 fclose(fileID);
