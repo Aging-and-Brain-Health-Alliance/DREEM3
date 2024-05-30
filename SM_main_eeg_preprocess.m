@@ -1,4 +1,3 @@
-
 function SM_main_eeg_preprocess(sub_id, source_path,dep_path)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % This function prepares EEG raw data, performs preprocessing, and saves
@@ -9,6 +8,7 @@ function SM_main_eeg_preprocess(sub_id, source_path,dep_path)
 % INPUTS:
 %   sub_id: Subject ID
 %   source_path: Path to the source folder containing EEG data
+%   dep_path: path to the dependencies
 %
 % EXAMPLE INPUTS:
 %   sub_id = 'COV207';
@@ -433,15 +433,15 @@ N2cleaned_filename = [sub_id '_' finishedfilename '_N2only.set'];
 N2only_cleaned_ind = (strcmp(N2N3_stages_afterfft_snipped,'N2'));
 
 swa_selectStagesEEGLAB_BAR(N2_EEG, N2only_cleaned_ind,'N2only_cleaned',N2cleaned_filename);
-N2only_cleaned = pop_saveset(N2_EEG, 'filename', N2cleaned_filename, 'filepath', sub_fold ,'check', 'on');
+% N2only_cleaned = pop_saveset(N2_EEG, 'filename', N2cleaned_filename, 'filepath', sub_fold ,'check', 'on');
  
 
 N3_EEG = N2N3_EEG;
-N3cleaned_filename = [finishedfilename '_N3only.set'];
+N3cleaned_filename = [sub_id '_' finishedfilename '_N3only.set'];
 
 N3only_cleaned_ind = (strcmp(N2N3_stages_afterfft_snipped,'N3'));
 swa_selectStagesEEGLAB_BAR(N3_EEG, N3only_cleaned_ind,'N3only_cleaned',N3cleaned_filename);
-N3only_cleaned = pop_saveset(N3_EEG, 'filename', N3cleaned_filename, 'filepath',sub_fold ,'check', 'on');
+% N3only_cleaned = pop_saveset(N3_EEG, 'filename', N3cleaned_filename, 'filepath',sub_fold ,'check', 'on');
 
 
 

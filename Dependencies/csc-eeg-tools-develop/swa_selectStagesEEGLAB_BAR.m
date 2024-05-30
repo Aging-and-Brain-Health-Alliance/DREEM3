@@ -13,7 +13,7 @@ if ~islogical(samples)
 end
 
 % create the memory map to the data (not sure what this is doing) - It accelerates file data I/O by mapping the input data onto MATLAB's address space (like a mat array) //AD
-tmp = memmapfile([EEG.save_dir,'/', EEG.datfile], 'Format', {'single', [EEG.nbchan EEG.pnts EEG.trials], 'eegData'}); %nbchan = no. of good channels; pnts = no. of samples/datapoints //AD
+tmp = memmapfile(fullfile(EEG.save_dir, EEG.datfile), 'Format', {'single', [EEG.nbchan EEG.pnts EEG.trials], 'eegData'}); %nbchan = no. of good channels; pnts = no. of samples/datapoints //AD
 % the above formats the tmp data into a matrix called eegData, which comprises (here) a 240 x 5547000 x 1 array into which the data in the specified filepath/filename location is stored
 % select the desired samples for the memory mapped data
 tmp1 = tmp.Data;
@@ -34,11 +34,11 @@ EEG.setname = setname;
 %EEG.filename = saveFile;
 EEG         = eeg_checkset(EEG); % EEGLAB function to test the consistency of data with the standard reference
 % save the EEG struct
-save([EEG.save_dir,saveFile], 'EEG', '-mat');%,'-v7.3');
-display(['writing ',EEG.save_dir,saveFile]);
+save(fullfile(EEG.save_dir,saveFile), 'EEG', '-mat');%,'-v7.3');
+display(['writing ',fullfile(EEG.save_dir,EEG.dataset)]);
 
 % write the new data file
-fileID = fopen([EEG.save_dir,EEG.dataset],'w');
-display(['writing ',EEG.save_dir,EEG.dataset]);
+fileID = fopen(fullfile(EEG.save_dir,saveFile),'w');
+display(['writing ',fullfile(EEG.save_dir,EEG.dataset)]);
 fwrite(fileID, EEG.data,'single');
 fclose(fileID);
